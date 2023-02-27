@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+Confirm delete
+{% endblock %}
+{% block menu %}
+<a class="nav-link active" aria-current="page" href="{% url 'add_product' %}">Добавить продукт</a>
+<a class="nav-link" href="{% url 'update_product' product.pk %}">Редактировать</a>
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <main class="main">
+        <div class="container">
+            <h4 class="qwerty">Вы точно хотите удалить данную запись?</h4>
+            <div class="card vektum">
+                <div class="item-image">
+                    <img src="{{ product.image }}" class="card-image"/></div>
+                <div class="item-title">
+                    <h4>{{ product.name }}</h4>
+                    <h6 class="par-title">{{ product.category }}</h6>
+                    <h5>Price: {{ product.price }} $</h5>
+                </div>
+            </div>
+            <div class="row">
+            <form action="{% url 'confirm_delete' product.pk %}" method="POST" class="form-in-del">
+                {% csrf_token %}
+                <p><a href="{% url 'confirm_delete' product.pk %}" class="parlink pro">
+                    <button type="button" class="btn btn-danger">Да</button>
+                </a></p>
+                <p><a href="{% url 'index' %}" class="parlink pro">
+                    <button type="button" class="btn btn-success">Нет</button>
+                </a></p>
+            </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+

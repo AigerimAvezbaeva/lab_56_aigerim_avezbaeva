@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+Product
+{% endblock %}
+
+{% block content %}
+
+<main class="main">
+    <div class="container">
+        <div class="card-in-detail">
+            <div class="item-image pro-card">
+                <img src="{{ product.image }}" class="card-image"/></div>
+            <div class="desc-product">
+                <h4>{{ product.name }}</h4>
+                <h6>{{ product.category }}</h6>
+                <h5>Price: {{ product.price }}</h5>
+                <h6 class="par-title">{{ product.description }}</h6>
+                <div class="cat-card-links pro-version">
+                    <div><a href="{% url 'update_product' product.pk  %}" class="submit-button edit">Edit</a></div>
+                    <div><a href="{% url 'delete_product' product.pk %}" class="submit-button del">Delete</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}

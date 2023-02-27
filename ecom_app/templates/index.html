@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block menu%}
+<a class="nav-link active" aria-current="page" href="{% url 'add_product' %}">Добавить продукт</a>
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <main class="main">
+        <div class="container">
+            {% if products %}
+            {% for product in products %}
+            <div class="card">
+                <div class="item-image">
+                    <img src="{{ product.image }}" class="card-image"/></div>
+                <div class="item-title">
+                    <h4>{{ product.name }}</h4>
+                    <h6 class="par-title">{{ product.category }}</h6>
+                    <h5>Price: {{ product.price }} $</h5>
+                    <p><a href="{% url 'product_detail' product.pk %}" class="parlink">see more..</a></p>
+                </div>
+            </div>
+            {%endfor%}
+            {% else %}
+            <h3 class="par">There is no products yet. Do you want to add?</h3>
+            <a href="{% url 'add_product' %}">Add product</a>
+            {%endif%}
+        </div>
+    </main>
+</div>
+{% endblock %}
+
